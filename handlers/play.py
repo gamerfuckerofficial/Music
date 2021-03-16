@@ -68,4 +68,4 @@ async def play(_, message: Message):
         await res.edit_text(f"#️⃣ Queued at position {position}.")
     else:
         await res.edit_text("▶️ Playing...")
-        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path, 48000)
+        callsmusic.pytgcalls.join_group_call(message.chat.id, file_path, 48000, callsmusic.pytgcalls.get_cache_peer())
