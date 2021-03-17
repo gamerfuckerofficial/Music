@@ -1,4 +1,6 @@
-FROM debian:latest
+FROM nikolaik/python-nodejs:python3.9-nodejs15-slim
+
+ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt update && apt upgrade -y
 RUN apt install git curl python3-pip ffmpeg -y
