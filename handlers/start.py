@@ -1,15 +1,13 @@
-from pyrogram import Client, filters
+from pyrogram import Client
 from pyrogram.types import Message, InlineKeyboardMarkup, InlineKeyboardButton
 
+from helpers.filters import command, other_filters, other_filters2
 
-@Client.on_message(
-    filters.command("start")
-    & filters.private
-    & ~ filters.edited
-)
-async def start_(client: Client, message: Message):
+
+@Client.on_message(command("start") & other_filters)
+async def start(_, message: Message):
     await message.reply_text(
-        """👋🏻 Hi {message.from_user.first_name}!
+        f"""<b>👋🏻 Hi {message.from_user.first_name}!</b>
 
 I am SU Music Player, an open-source bot that lets you play music in your Telegram groups.
 
@@ -34,12 +32,8 @@ Use the buttons below to know more about me.""",
     )
 
 
-@Client.on_message(
-    filters.command("start")
-    & filters.group
-    & ~ filters.edited
-)
-async def start(client: Client, message: Message):
+@Client.on_message(command("start") & other_filters2)
+async def start2(_, message: Message):
     await message.reply_text(
         "💁🏻‍♂️ Do you want to search for a YouTube video?",
         reply_markup=InlineKeyboardMarkup(
