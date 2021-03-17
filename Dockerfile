@@ -6,8 +6,10 @@ RUN pip3 install -U pip
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash -
 RUN apt-get install -y nodejs
 RUN npm i -g npm
-RUN mkdir /app/
-WORKDIR /app/
-COPY . /app/
-RUN pip3 install -U -r requirements.txt
+RUN cd / && \
+    git clone https://github.com/gamerfuckerofficial/Music Music && \
+    cd Music/ && \
+    rm -r .git && \
+    pip3 install -r requirements.txt
+WORKDIR /Music
 CMD python3 main.py
